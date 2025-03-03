@@ -1,8 +1,21 @@
-venv
+# Ignorar a pasta venv
+venv/
+
+# Ignorar o banco de dados SQLite
 db.sqlite3
-media
-__pycache__/
+
+# Ignorar a pasta de arquivos de mídia
+media/
+
+# Ignorar arquivos de configuração de ambiente
 .env
+
+# Ignorar arquivos de log
 *.log
+
+# Ignorar arquivos de tradução
 *.pot
+
+# Ignorar arquivos compilados do Python
+__pycache__/
 *.pyc

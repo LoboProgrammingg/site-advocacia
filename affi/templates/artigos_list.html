@@ -1,24 +1,70 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
-<!-- Artigos -->
-<section class="articles-section py-5">
+<section class="artigos-section py-5">
     <div class="container">
-        <h2 class="section-title text-center">Artigos Recentes</h2>
-        <div class="row">
-            {% for artigo in artigos %}
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card shadow-sm">
-                    <img src="https://via.placeholder.com/500" class="card-img-top" alt="{{ artigo.titulo }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ artigo.titulo }}</h5>
-                        <p class="card-text">{{ artigo.resumo|truncatewords:15 }}</p>
-                        <a href="{% url 'artigo_detail' artigo.id %}" class="btn btn-custom">Leia Mais</a>
-                    </div>
+        <h2 class="section-title text-center fw-bold mb-5 text-uppercase text-primary">Nossos Artigos</h2>
+        
+        <!-- Barra de Pesquisa -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-6">
+                <div class="input-group search-bar shadow-sm">
+                    <input type="text" class="form-control search-input" id="searchInput" placeholder="Pesquise por artigos..." onkeyup="searchArticles()">
+                    <span class="input-group-text search-icon"><i class="fas fa-search"></i></span>
                 </div>
             </div>
+        </div>
+
+        <!-- Lista de Artigos -->
+        <div class="row g-4" id="articleList">
+            {% for artigo in artigos %}
+                <div class="col-md-6 col-lg-4 artigo-card" data-title="{{ artigo.titulo|lower }}">
+                    <div class="card custom-article-card">
+                        <div class="card-img-container">
+                            <img src="{{ artigo.imagem.url }}" class="card-img-top" alt="{{ artigo.titulo }}">
+                        </div>
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <h5 class="card-title">{{ artigo.titulo }}</h5>
+                            <p class="card-text">{{ artigo.descricao|truncatewords:20 }}</p>
+                            <a href="{% url 'artigo_detail' artigo.id %}" class="btn btn-read-more mt-auto">Leia mais</a>
+                        </div>
+                    </div>
+                </div>
             {% endfor %}
+        </div>
+
+        <!-- Paginação -->
+        <div class="pagination-container mt-5">
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    {% if artigos.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ artigos.previous_page_number }}" aria-label="Previous">&laquo;</a>
+                        </li>
+                    {% endif %}
+                    <li class="page-item disabled">
+                        <span class="page-link">Página {{ artigos.number }} de {{ artigos.paginator.num_pages }}</span>
+                    </li>
+                    {% if artigos.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ artigos.next_page_number }}" aria-label="Next">&raquo;</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
         </div>
     </div>
 </section>
+
+<script>
+    function searchArticles() {
+        const input = document.getElementById('searchInput').value.toLowerCase();
+        document.querySelectorAll('.artigo-card').forEach(article => {
+            const title = article.getAttribute('data-title');
+            article.style.display = title.includes(input) ? 'block' : 'none';
+        });
+    }
+</script>
 {% endblock %}

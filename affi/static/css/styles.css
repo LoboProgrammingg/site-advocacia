@@ -1,0 +1,218 @@
+/* ----------------------------- Estilos Globais ----------------------------- */
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #fafafa;
+    margin: 0;
+    padding: 0;
+}
+
+/* ----------------------------- Navbar (Cabeçalho) ----------------------------- */
+
+.navbar {
+    background-color: #003366;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+    color: #fff !important; /* Mantendo o branco para contraste */
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+    color: #ffd700 !important;
+}
+
+.navbar-toggler-icon {
+    background-color: #fff;
+}
+
+/* ----------------------------- Seção Principal (Hero Section) ----------------------------- */
+
+.hero-section {
+    background-color: #003366;
+    color: #fff; /* Texto branco para maior visibilidade */
+    padding: 60px 20px;
+    text-align: center;
+}
+
+/* ----------------------------- Rodapé ----------------------------- */
+
+.footer {
+    background-color: #003366;
+    color: #fff; /* Texto branco no rodapé */
+    padding: 30px 0;
+}
+
+.footer a {
+    color: #ffd700;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* ----------------------------- Títulos e Texto ----------------------------- */
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #003366; /* Mantendo o azul para os títulos */
+    margin-bottom: 1rem;
+}
+
+.lead {
+    font-size: 1.125rem;
+    color: #fff; /* Texto branco para facilitar a leitura */
+    line-height: 1.8;
+}
+
+/* ----------------------------- Cartões ----------------------------- */
+
+.card, .custom-article-card {
+    border-radius: 15px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover, .custom-article-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-body, .custom-article-card .card-body {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-img-container, .card-body img {
+    height: 180px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-title, .card-text {
+    font-size: 1.1rem;
+    color: #143d59;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    color: #6c757d;
+}
+
+.btn-primary, .btn-read-more {
+    background-color: #003366;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover, .btn-read-more:hover {
+    background-color: #ffd700;
+    color: #003366;
+}
+
+/* ----------------------------- Depoimentos ----------------------------- */
+
+.testimonial-blockquote {
+    font-size: 1.1rem;
+    color: #fff; /* Branco para o texto de depoimentos */
+    font-style: italic;
+}
+
+/* ----------------------------- Seções Adicionais ----------------------------- */
+
+.about-section, .additional-text-section, .artigos-section {
+    padding: 60px 20px;
+}
+
+.about-section .lead {
+    font-size: 1.125rem;
+    color: #fff; /* Alterando para branco */
+}
+
+.additional-text-section .custom-alert {
+    background-color: #003366;
+    color: white;
+    border-radius: 15px;
+    padding: 40px 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.additional-text-section .custom-alert h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #f0f0f0;
+}
+
+.additional-text-section .custom-alert p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+}
+
+.additional-text-section .custom-alert p.text-muted {
+    color: #d1d1d1;
+}
+
+/* ----------------------------- Barra de Pesquisa ----------------------------- */
+
+#searchInput:focus {
+    border-color: #003366;
+    box-shadow: 0 0 5px rgba(0, 51, 102, 0.5);
+}
+
+/* ----------------------------- Paginação ----------------------------- */
+
+.pagination-container {
+    text-align: center;
+}
+
+.pagination .page-link {
+    color: #143d59;
+    font-weight: bold;
+    border: none;
+    background-color: transparent;
+    transition: all 0.3s ease;
+    margin: 0 3px;
+}
+
+.pagination .page-link:hover {
+    background-color: #f4b41a;
+    color: #143d59;
+}
+
+/* ----------------------------- Responsividade ----------------------------- */
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .card-title {
+        font-size: 1rem;
+    }
+
+    .card-text {
+        font-size: 0.85rem;
+    }
+
+    .btn-read-more {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+}
