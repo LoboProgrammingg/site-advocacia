@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação de Requerimento</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            max-width: 120px;
+            display: block;
+            margin: 0 auto;
+        }
+        .headline {
+            text-align: center;
+            color: #1e4e5f;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .message {
+            text-align: center;
+            color: #777;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 30px;
+            color: #777;
+        }
+        .button {
+            display: inline-block;
+            background-color: #f4b41a;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: #143d59;
+        }
+    </style>
+</head>
+<body>
+    {% load static %}
+    <div class="container">
+        <h2 class="headline">Mensagem Enviada com Sucesso!</h2>
+        <p class="message">
+            Olá {{ nome_cliente }},<br><br>
+            Agradecemos pelo seu contato! Sua mensagem foi recebida com sucesso e nossa equipe estará analisando o seu pedido.
+            <br><br>
+            <strong>Resumo do seu requerimento:</strong><br>
+            <strong>Serviço:</strong> {{ tipo_servico }}<br>
+            <strong>Descrição:</strong> {{ descricao }}<br><br>
+            Em breve, entraremos em contato com a resposta ou mais informações sobre o seu questionamento.
+        </p>
+        <p class="footer">
+            <strong>Atenciosamente,</strong><br>
+            Guilherme Affi<br>
+        </p>
+    </div>
+</body>
+</html>

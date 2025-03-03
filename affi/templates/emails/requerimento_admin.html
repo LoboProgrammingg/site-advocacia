@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Requerimento</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            margin: 30px auto;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+        }
+
+        .logo {
+            max-width: 150px;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 30px;
+        }
+
+        .header {
+            text-align: center;
+            color: #143d59;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .details {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f9fafb;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .details h3 {
+            color: #143d59;
+            margin-bottom: 15px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .details p {
+            margin: 10px 0;
+            color: #555;
+            font-size: 16px;
+        }
+
+        .details .highlight {
+            color: #f4b41a;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+            margin-top: 30px;
+        }
+
+        .footer a {
+            color: #143d59;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .cta {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .cta a {
+            background-color: #27ae60;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .cta a:hover {
+            background-color: #219150;
+        }
+    </style>
+</head>
+<body>
+    {% load static %}
+    <div class="container">
+        <!-- Logo -->
+        <img src="{% static 'images/logo.png' %}" alt="Logo da Empresa" class="logo">
+        <!-- Header -->
+        <h2 class="header">Novo Requerimento Recebido</h2>
+        
+        <!-- Detalhes do Requerimento -->
+        <div class="details">
+            <h3>Informações do Requerimento:</h3>
+            
+            <p><strong>Nome do Cliente:</strong> <span class="highlight">{{ nome_cliente }}</span></p>
+            <p><strong>E-mail do Cliente:</strong> <span class="highlight">{{ email_cliente }}</span></p>
+            <p><strong>Serviço Solicitado:</strong> <span class="highlight">{{ tipo_servico }}</span></p>
+            <p><strong>Descrição:</strong> <span class="highlight">{{ descricao }}</span></p>
+
+            <p>Um novo requerimento foi enviado pelo cliente. Entre em contato com ele para seguir com o processo.</p>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta">
+            <a href="mailto:{{ email_cliente }}">Responder ao Cliente</a>
+        </div>
+
+        <!-- Footer -->
+        <p class="footer">
+            <strong>Atenciosamente,</strong><br>
+            Equipe de Atendimento<br><br>
+            <a href="mailto:{{ settings.EMAIL_HOST_USER }}">Entrar em Contato</a>
+        </p>
+    </div>
+</body>
+</html>

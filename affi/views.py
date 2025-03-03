@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.mail import send_mail
 from django.contrib import messages
 from django.conf import settings
+from django.http import HttpResponse
+from django.template.loader import render_to_string
 from django.core.paginator import Paginator
 
 from .forms import ContatoForm
@@ -73,6 +75,7 @@ def requerimento(request):
 
         arquivo = request.FILES.get('arquivo', None)
 
+        # Criar e salvar o requerimento
         requerimento = Requerimento(
             nome_cliente=nome_cliente,
             email_cliente=email_cliente,
@@ -82,40 +85,42 @@ def requerimento(request):
         )
         requerimento.save()
 
-        # Enviar e-mail para o administrador (você)
+        # Enviar e-mail para o administrador (com template HTML)
         assunto_admin = f'Novo Requerimento de {nome_cliente}'
-        mensagem_admin = (
-            f'Nome: {nome_cliente}\n'
-            f'E-mail: {email_cliente}\n'
-            f'Serviço: {tipo_servico}\n'
-            f'Descrição: {descricao}\n'
-        )
+        
+        # Renderizar o HTML do template de e-mail para o administrador
+        mensagem_admin_html = render_to_string('emails/requerimento_admin.html', {
+            'nome_cliente': nome_cliente,
+            'email_cliente': email_cliente,
+            'tipo_servico': tipo_servico,
+            'descricao': descricao
+        })
 
         send_mail(
             assunto_admin,
-            mensagem_admin,
+            '',  # Corpo do email vazio, pois vamos usar HTML
             settings.EMAIL_HOST_USER,  # Remetente configurado no settings
             [settings.EMAIL_HOST_USER],  # Seu e-mail para receber
+            html_message=mensagem_admin_html,  # Passar o HTML
             fail_silently=False,
         )
 
-        # Enviar e-mail de confirmação para o cliente
+        # Enviar e-mail de confirmação para o cliente (HTML)
         assunto_cliente = 'Recebemos seu requerimento'
-        mensagem_cliente = (
-            f'Olá {nome_cliente},\n\n'
-            'Recebemos seu requerimento e nossa equipe entrará em contato em breve.\n\n'
-            'Resumo do seu requerimento:\n'
-            f'Serviço: {tipo_servico}\n'
-            f'Descrição: {descricao}\n\n'
-            'Atenciosamente,\n'
-            'Equipe Guilherme Affi'
-        )
+
+        # Renderizar o HTML do template de e-mail para o cliente
+        mensagem_cliente_html = render_to_string('emails/requerimento_confirmacao.html', {
+            'nome_cliente': nome_cliente,
+            'tipo_servico': tipo_servico,
+            'descricao': descricao
+        })
 
         send_mail(
             assunto_cliente,
-            mensagem_cliente,
+            '',  # Corpo do email vazio, pois vamos usar HTML
             settings.EMAIL_HOST_USER,  # Seu e-mail como remetente
             [email_cliente],  # E-mail do cliente
+            html_message=mensagem_cliente_html,  # Passar o HTML
             fail_silently=False,
         )
 
