@@ -1,12 +1,44 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
 <!-- Detalhes do Serviço -->
-<section class="service-detail py-5">
+<section class="service-detail py-5 bg-light">
     <div class="container">
-        <h2 class="section-title">{{ servico.nome }}</h2>
-        <p>{{ servico.descricao }}</p>
-        <a href="{% url 'servicos_list' %}" class="btn btn-custom">Voltar para a lista de serviços</a>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <!-- Título do Serviço -->
+                <h2 class="section-title text-uppercase fw-bold mb-4">{{ servico.nome }}</h2>
+
+                <!-- Descrição do Serviço -->
+                <p class="lead text-muted mb-5">{{ servico.descricao }}</p>
+
+                <!-- Imagem do Serviço (se houver) -->
+                {% if servico.imagem %}
+                    <div class="service-img mb-5">
+                        <img src="{{ servico.imagem.url }}" alt="{{ servico.nome }}" class="img-fluid rounded shadow-lg">
+                    </div>
+                {% else %}
+                    <div class="service-img mb-5">
+                        <img src="{% static 'images/no-image.jpg' %}" alt="Imagem indisponível" class="img-fluid rounded shadow-lg">
+                    </div>
+                {% endif %}
+
+                <!-- Informações adicionais sobre o serviço (se houver) -->
+                <div class="service-info mb-5">
+                    <h5 class="fw-bold text-primary">O que este serviço oferece?</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li><i class="fas fa-check-circle"></i> Solução personalizada para suas necessidades</li>
+                        <li><i class="fas fa-check-circle"></i> Atendimento especializado</li>
+                        <li><i class="fas fa-check-circle"></i> Garantia de qualidade e excelência</li>
+                    </ul>
+                </div>
+
+                <!-- Botão de Voltar para a Lista de Serviços -->
+                <a href="{% url 'servicos_list' %}" class="btn btn-primary btn-lg px-5 py-3 rounded-pill hover-orange">Voltar para a lista de serviços</a>
+            </div>
+        </div>
     </div>
 </section>
 {% endblock %}

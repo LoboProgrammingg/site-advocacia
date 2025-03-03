@@ -1,23 +1,104 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
 <!-- Serviços Oferecidos -->
 <section class="services-section py-5 bg-light">
     <div class="container">
-        <h2 class="section-title text-center">Serviços Oferecidos</h2>
+        <!-- Título da Seção -->
+        <h2 class="section-title text-center text-uppercase fw-bold mb-5 text-primary">Serviços Oferecidos</h2>
+        
+        <!-- Lista de Serviços -->
         <div class="row">
             {% for servico in servicos %}
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ servico.nome }}</h5>
-                        <p class="card-text">{{ servico.descricao|truncatewords:15 }}</p>
-                        <a href="{% url 'servico_detail' servico.id %}" class="btn btn-custom">Saiba Mais</a>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title text-primary fw-bold mb-3">{{ servico.nome }}</h5>
+                            <p class="card-text text-muted mb-4">{{ servico.descricao|truncatewords:20 }}</p>
+                            <div class="mt-auto">
+                                <a href="{% url 'servico_detail' servico.id %}" class="btn btn-primary w-100 py-2 rounded-pill hover-blue">Saiba Mais</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
             {% endfor %}
+        </div>
+
+        <!-- Paginação -->
+        <div class="pagination-container mt-5">
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    {% if servicos.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ servicos.previous_page_number }}" aria-label="Previous">&laquo;</a>
+                        </li>
+                    {% endif %}
+                    <li class="page-item disabled">
+                        <span class="page-link">Página {{ servicos.number }} de {{ servicos.paginator.num_pages }}</span>
+                    </li>
+                    {% if servicos.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ servicos.next_page_number }}" aria-label="Next">&raquo;</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
         </div>
     </div>
 </section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Botão azul com hover azul */
+    .hover-blue:hover {
+        background-color: #143d59; /* Azul mais escuro */
+        border-color: #143d59;
+    }
+
+    /* Melhorias no layout da card */
+    .card {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+
+    .card-text {
+        font-size: 1rem;
+        color: #6c757d;
+    }
+
+    .pagination-container .pagination {
+        margin-top: 40px;
+    }
+
+    .pagination-container .pagination .page-link {
+        background-color: #f4b41a; /* Cor laranja */
+        color: #143d59;
+        border-color: #f4b41a;
+    }
+
+    .pagination-container .pagination .page-link:hover {
+        background-color: #143d59;
+        color: #fff;
+    }
+
+    /* Melhorar espaçamento e alinhamento */
+    .section-title {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+</style>
 {% endblock %}

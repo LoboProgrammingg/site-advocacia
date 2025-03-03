@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Advogado, Servico, Artigo, PerguntaFAQ, Requerimento, Testemunho, Agendamento, FalenciaRecuperacao
 from django.contrib import messages
+from django.core.paginator import Paginator
+
 from .forms import ContatoForm
+from .models import Advogado, Servico, Artigo, PerguntaFAQ, Requerimento, Testemunho, Agendamento, FalenciaRecuperacao
 
 
 def home(request):
@@ -27,7 +29,11 @@ def sobre(request):
 
 def servicos_list(request):
     servicos = Servico.objects.filter(ativo=True)
-    return render(request, 'servicos_list.html', {'servicos': servicos})
+    paginator = Paginator(servicos, 6)
+    page = request.GET.get('page')
+    servicos_paginados = paginator.get_page(page)
+
+    return render(request, 'servicos_list.html', {'servicos': servicos_paginados})
 
 
 def servico_detail(request, servico_id):
@@ -37,7 +43,13 @@ def servico_detail(request, servico_id):
 
 def artigos_list(request):
     artigos = Artigo.objects.filter(ativo=True).order_by('-data_publicacao')
-    return render(request, 'artigos_list.html', {'artigos': artigos})
+    
+    # Configurando a paginação
+    paginator = Paginator(artigos, 6)  # 6 artigos por página
+    page = request.GET.get('page')
+    artigos_paginados = paginator.get_page(page)
+    
+    return render(request, 'artigos_list.html', {'artigos': artigos_paginados})
 
 
 def artigo_detail(request, artigo_id):
