@@ -34,7 +34,8 @@ class Artigo(models.Model):
     data_publicacao = models.DateTimeField(auto_now_add=True)
     autor = models.ForeignKey(Advogado, on_delete=models.CASCADE)
     ativo = models.BooleanField(default=True)
-
+    imagem = models.ImageField(upload_to='artigos/', blank=True, null=True)  # Adiciona o campo imagem
+    
     def __str__(self):
         return self.titulo
 

@@ -1,5 +1,4 @@
 /* ----------------------------- Estilos Globais ----------------------------- */
-
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #fafafa;
@@ -8,7 +7,6 @@ body {
 }
 
 /* ----------------------------- Navbar (Cabeçalho) ----------------------------- */
-
 .navbar {
     background-color: #003366;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -29,7 +27,6 @@ body {
 }
 
 /* ----------------------------- Seção Principal (Hero Section) ----------------------------- */
-
 .hero-section {
     background-color: #003366;
     color: #fff; /* Texto branco para maior visibilidade */
@@ -38,7 +35,6 @@ body {
 }
 
 /* ----------------------------- Rodapé ----------------------------- */
-
 .footer {
     background-color: #003366;
     color: #fff; /* Texto branco no rodapé */
@@ -56,7 +52,6 @@ body {
 }
 
 /* ----------------------------- Títulos e Texto ----------------------------- */
-
 .section-title {
     font-size: 2.5rem;
     font-weight: 700;
@@ -70,8 +65,7 @@ body {
     line-height: 1.8;
 }
 
-/* ----------------------------- Cartões ----------------------------- */
-
+/* ----------------------------- Cartões (Artigos, Produtos, etc.) ----------------------------- */
 .card, .custom-article-card {
     border-radius: 15px;
     border: 1px solid #ddd;
@@ -128,7 +122,6 @@ body {
 }
 
 /* ----------------------------- Depoimentos ----------------------------- */
-
 .testimonial-blockquote {
     font-size: 1.1rem;
     color: #fff; /* Branco para o texto de depoimentos */
@@ -136,7 +129,6 @@ body {
 }
 
 /* ----------------------------- Seções Adicionais ----------------------------- */
-
 .about-section, .additional-text-section, .artigos-section {
     padding: 60px 20px;
 }
@@ -170,14 +162,12 @@ body {
 }
 
 /* ----------------------------- Barra de Pesquisa ----------------------------- */
-
 #searchInput:focus {
     border-color: #003366;
     box-shadow: 0 0 5px rgba(0, 51, 102, 0.5);
 }
 
 /* ----------------------------- Paginação ----------------------------- */
-
 .pagination-container {
     text-align: center;
 }
@@ -197,7 +187,6 @@ body {
 }
 
 /* ----------------------------- Responsividade ----------------------------- */
-
 @media (max-width: 768px) {
     .section-title {
         font-size: 1.8rem;
@@ -216,3 +205,116 @@ body {
         padding: 6px 12px;
     }
 }
+
+/* ----------------------------- Detalhes do Artigo ----------------------------- */
+.article-detail {
+    background-color: #f9f9f9;
+}
+
+.article-detail .section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #003366;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.article-detail .article-content {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.article-detail .article-content p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #333;
+}
+
+.article-detail .article-content .lead {
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.article-detail .btn-custom {
+    background-color: #003366;
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+}
+
+.article-detail .btn-custom:hover {
+    background-color: #f4b41a;
+    color: #003366;
+}
+
+/* ----------------------------- Estilos Específicos para Artigos ----------------------------- */
+.artigos-section {
+    padding: 60px 20px;
+}
+
+.artigos-section .section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #003366;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.artigos-section .search-bar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.artigos-section .search-input {
+    border-radius: 20px;
+    padding: 10px;
+    width: 80%;
+    max-width: 600px;
+}
+
+.artigos-section .search-icon {
+    background-color: #003366;
+    color: #fff;
+    border-radius: 50%;
+}
+
+.artigos-section .artigo-card {
+    margin-bottom: 20px;
+}
+
+.artigos-section .card-img-container img {
+    object-fit: cover;
+}
+
+.artigos-section .pagination-container {
+    margin-top: 20px;
+    text-align: center;
+}
+/* Tornando a imagem do artigo responsiva */
+.card-img-container {
+    width: 100%;
+    height: 40vh; /* Ajuste a altura com base na altura da viewport */
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.card-img-top {
+    object-fit: cover; /* Faz com que a imagem cubra todo o espaço do card sem distorcer */
+    width: 100%;
+    height: 100%;
+}
+

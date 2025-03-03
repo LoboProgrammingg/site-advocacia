@@ -138,20 +138,36 @@
         <h2 class="section-title text-center text-dark font-weight-bold mb-5">Últimos Artigos</h2>
         <div class="row">
             {% for artigo in artigos %}
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card shadow-lg border-light rounded-lg hover-effect">
-                    <img src="https://via.placeholder.com/500" class="card-img-top" alt="{{ artigo.titulo }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ artigo.titulo }}</h5>
-                        <p class="card-text">{{ artigo.resumo|truncatewords:15 }}</p>
-                        <a href="{% url 'artigo_detail' artigo.id %}" class="btn btn-primary">Leia Mais</a>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card shadow-lg border-light rounded-lg hover-effect">
+                        <div class="card-img-container" 
+                            {% if artigo.imagem %}
+                                style="background-image: url('{{ artigo.imagem.url }}');"
+                            {% else %}
+                                style="background-color: #f4f4f4;" 
+                            {% endif %}
+                        >
+                            {% if not artigo.imagem %}
+                                <img src="{% static 'images/no-image.jpg' %}" class="card-img-top" alt="{{ artigo.titulo }}">
+                            {% endif %}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ artigo.titulo }}</h5>
+                            <!-- Botão para ver o artigo específico -->
+                            <a href="{% url 'artigo_detail' artigo.id %}" class="btn btn-secondary btn-sm">Ver Artigo</a>
+                        </div>
                     </div>
                 </div>
-            </div>
             {% endfor %}
+        </div>
+
+        <!-- Botão para ver todos os artigos -->
+        <div class="text-center mt-4">
+            <a href="{% url 'artigos_list' %}" class="btn btn-primary btn-lg">Ver Todos os Artigos</a>
         </div>
     </div>
 </section>
+
 
 <!-- Testemunhos Section -->
 <section class="testimonials-section py-5" style="background-color: #eef2f5;">
