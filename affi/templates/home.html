@@ -1,16 +1,21 @@
 {% extends 'base.html' %}
-
 {% load static %}
 
 {% block content %}
-<!-- Hero Section - Início -->
-<section class="hero-section text-center text-light py-5" style="background: linear-gradient(to right, #2c3e50, #34495e);">
+<!-- Hero Section -->
+<style>
+    .hero-section {
+        background: url("{% static 'images/banner_01.png' %}") no-repeat center center;
+        background-size: cover;
+        height: 400px;
+    }
+</style>
+
+<section class="hero-section text-center text-light py-5">
     <div class="container py-5">
-        <h1 class="display-3 font-weight-bold mb-3 text-shadow">Guilherme Affi</h1>
-        <p class="lead mb-4 text-shadow">Especialista em Falências, Recuperações Judiciais e Consultoria Jurídica. Confiabilidade e Expertise para resolver os seus desafios jurídicos.</p>
+        <!-- Imagem como fundo da hero section -->
     </div>
 </section>
-<!-- Hero Section - Fim -->
 
 <!-- Sobre o Advogado Section -->
 <section class="about-section py-5" style="background-color: #f4f7fa;">
@@ -52,7 +57,7 @@
                             <td class="text-center">
                                 {% if falencia.acesso_documento %}
                                     <a href="{{ falencia.documento.url }}" class="btn btn-link" target="_blank">
-                                        <i class="fa fa-search"></i> <!-- Lupa -->
+                                        <i class="fa fa-search"></i>
                                     </a>
                                 {% else %}
                                     <span class="text-muted">Sem acesso</span>
@@ -71,11 +76,10 @@
     </div>
 </section>
 
-<!-- FAQ Section - Dúvidas Frequentes -->
+<!-- FAQ Section -->
 <section class="faq-section custom-faq-bg py-5">
     <div class="container">
         <h2 class="section-title text-center text-primary font-weight-bold mb-5">Dúvidas Frequentes</h2>
-
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="accordion" id="faqAccordion">
@@ -99,7 +103,7 @@
     </div>
 </section>
 
-<!-- Seção para Criar Requerimento -->
+<!-- Criar Requerimento Section -->
 <section class="requerimento-section py-5" style="background-color: #e0f7fa;">
     <div class="container">
         <div class="row justify-content-center">
@@ -153,7 +157,6 @@
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ artigo.titulo }}</h5>
-                            <!-- Botão para ver o artigo específico -->
                             <a href="{% url 'artigo_detail' artigo.id %}" class="btn btn-secondary btn-sm">Ver Artigo</a>
                         </div>
                     </div>
@@ -161,13 +164,11 @@
             {% endfor %}
         </div>
 
-        <!-- Botão para ver todos os artigos -->
         <div class="text-center mt-4">
             <a href="{% url 'artigos_list' %}" class="btn btn-primary btn-lg">Ver Todos os Artigos</a>
         </div>
     </div>
 </section>
-
 
 <!-- Testemunhos Section -->
 <section class="testimonials-section py-5" style="background-color: #eef2f5;">
@@ -190,13 +191,11 @@
     </div>
 </section>
 
-<!-- Contato Section (Agora com Formulário) -->
+<!-- Contato Section -->
 <section class="contact-section py-5" style="background-color: #ffffff;">
     <div class="container">
         <h2 class="section-title text-center text-dark font-weight-bold mb-5">Entre em Contato</h2>
         <p class="text-center mb-4 text-muted">Caso precise de uma consulta ou queira discutir um caso, entre em contato conosco. Estamos aqui para ajudar!</p>
-        
-        <!-- Formulário de Contato -->
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8">
                 <form action="{% url 'contato' %}" method="post">
@@ -225,4 +224,3 @@
 </section>
 
 {% endblock %}
-

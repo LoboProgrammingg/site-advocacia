@@ -26,15 +26,8 @@ body {
     background-color: #fff;
 }
 
-/* ----------------------------- Seção Principal (Hero Section) ----------------------------- */
-.hero-section {
-    background-color: #003366;
-    color: #fff; /* Texto branco para maior visibilidade */
-    padding: 60px 20px;
-    text-align: center;
-}
-
 /* ----------------------------- Rodapé ----------------------------- */
+
 .footer {
     background-color: #003366;
     color: #fff; /* Texto branco no rodapé */
