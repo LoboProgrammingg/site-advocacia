@@ -142,5 +142,4 @@ Desenvolvedor FullStack
 ---
 
 🔗 **"O código é apenas uma ferramenta. A verdadeira magia está nas pessoas e no que elas criam."**  
- - Matheus Lobo Camara
 
