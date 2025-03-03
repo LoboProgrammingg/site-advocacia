@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<!-- Seção "Sobre o Advogado" -->
+<section class="about-section py-5" style="background-color: #f8f9fa; color: #333;">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Texto sobre o advogado -->
+            <div class="col-md-6 order-md-1 text-center text-md-left">
+                <h2 class="section-title text-primary mb-4">Sobre o Dr. Guilherme Affi</h2>
+                <p class="lead text-muted mb-4">
+                    {{ advogado.descricao }}
+                </p>
+            </div>
+
+            <!-- Imagem do advogado -->
+            <div class="col-md-6 order-md-0 text-center">
+                <img src="{% static 'images/guilherme_affi.png' %}" alt="Dr. Guilherme Affi" class="img-fluid rounded-circle shadow-lg" style="max-width: 280px; height: auto;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Seção de Texto Adicional Profissional -->
+<section class="additional-text-section py-5" style="background-color: #ffffff;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-primary custom-alert">
+                    <h3 class="font-weight-bold mb-4">Guilherme Affi - Sua Tradição em Consultoria Jurídica</h3>
+                    <p class="lead mb-4">
+                        Com vasta experiência em <strong>Falências, Recuperações Judiciais e Consultoria Jurídica</strong>, Dr. Guilherme Affi tem como missão proporcionar um atendimento jurídico confiável e eficiente. 
+                        Seus anos de dedicação ao Direito têm como foco solucionar problemas complexos e proteger os direitos de seus clientes, sempre com o mais alto padrão de ética e comprometimento.
+                    </p>
+                    <p class="text-muted mb-4">
+                        Ao longo da sua carreira, Dr. Guilherme Affi consolidou sua reputação como um dos principais advogados em sua área de atuação. Ele oferece um atendimento individualizado e soluções jurídicas personalizadas, visando sempre o melhor interesse de seus clientes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

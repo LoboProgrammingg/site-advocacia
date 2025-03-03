@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Detalhes do Artigo -->
+<section class="article-detail py-5">
+    <div class="container">
+        <h2 class="section-title">{{ artigo.titulo }}</h2>
+        <p>{{ artigo.conteudo }}</p>
+        <a href="{% url 'artigos_list' %}" class="btn btn-custom">Voltar para os artigos</a>
+    </div>
+</section>
+{% endblock %}

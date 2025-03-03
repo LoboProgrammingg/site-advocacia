@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Página de Sucesso -->
+<section class="py-5 text-center">
+    <div class="container">
+        <h2 class="text-primary">Mensagem Enviada com Sucesso!</h2>
+        <p class="text-muted">Agradecemos pelo seu contato! Responderemos o mais rápido possível.</p>
+        <a href="{% url 'home' %}" class="btn btn-primary">Voltar para a Home</a>
+    </div>
+</section>
+{% endblock %}

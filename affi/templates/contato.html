@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Seção de Contato -->
+<section class="contato-section py-5" style="background-color: #f4f7fa;">
+    <div class="container">
+        <h2 class="section-title text-center text-primary font-weight-bold mb-5">Entre em Contato</h2>
+        <p class="text-center text-muted mb-4">Preencha o formulário abaixo para entrar em contato conosco. Responderemos o mais rápido possível.</p>
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <label for="nome" class="form-label text-muted">Nome Completo</label>
+                        <input type="text" class="form-control" id="nome" name="nome" required placeholder="Digite seu nome completo">
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="form-label text-muted">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required placeholder="Digite seu email">
+                    </div>
+                    <div class="mb-4">
+                        <label for="telefone" class="form-label text-muted">Telefone</label>
+                        <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Digite seu telefone (opcional)">
+                    </div>
+                    <div class="mb-4">
+                        <label for="mensagem" class="form-label text-muted">Mensagem</label>
+                        <textarea class="form-control" id="mensagem" name="mensagem" rows="5" required placeholder="Descreva sua mensagem ou dúvida"></textarea>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg shadow-lg">Enviar Mensagem</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Informações de Contato (seção adicional) -->
+<section class="informacoes-contato py-5">
+    <div class="container text-center">
+        <h3 class="section-title text-primary font-weight-bold mb-4">Outras Formas de Contato</h3>
+        <p class="text-muted mb-4">Você também pode nos contatar através dos seguintes meios:</p>
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <h5 class="text-primary">Telefone</h5>
+                <p class="text-muted">(11) 1234-5678</p>
+            </div>
+            <div class="col-md-4">
+                <h5 class="text-primary">Email</h5>
+                <p class="text-muted"><a href="mailto:contato@guilhermeaffi.com.br">contato@guilhermeaffi.com.br</a></p>
+            </div>
+            <div class="col-md-4">
+                <h5 class="text-primary">Redes Sociais</h5>
+                <p class="text-muted">
+                    <a href="https://www.linkedin.com/in/guilherme-affi" target="_blank">LinkedIn</a> | 
+                    <a href="https://www.facebook.com/guilherme.affi" target="_blank">Facebook</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

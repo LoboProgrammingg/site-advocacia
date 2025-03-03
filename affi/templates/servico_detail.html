@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Detalhes do Serviço -->
+<section class="service-detail py-5">
+    <div class="container">
+        <h2 class="section-title">{{ servico.nome }}</h2>
+        <p>{{ servico.descricao }}</p>
+        <a href="{% url 'servicos_list' %}" class="btn btn-custom">Voltar para a lista de serviços</a>
+    </div>
+</section>
+{% endblock %}

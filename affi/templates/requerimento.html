@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Formulário de Requerimento -->
+<section class="requerimento-section py-5" style="background-color: #f0f4f8;">
+    <div class="container">
+        <h2 class="section-title" style="color: #003366;">Preencha o Formulário de Requerimento</h2>
+        <form method="POST" enctype="multipart/form-data">  <!-- adicionado enctype -->
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="nome_cliente" class="form-label">Nome do Cliente</label>
+                <input type="text" class="form-control" id="nome_cliente" name="nome_cliente" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="email_cliente" class="form-label">Email do Cliente</label>
+                <input type="email" class="form-control" id="email_cliente" name="email_cliente" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="tipo_servico" class="form-label">Tipo de Serviço</label>
+                <select class="form-select" id="tipo_servico" name="tipo_servico" required>
+                    <option value="" disabled selected>Selecione um serviço</option>
+                    {% for servico in servicos %}
+                        <option value="{{ servico.id }}">{{ servico.nome }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="descricao" class="form-label">Descrição do Requerimento</label>
+                <textarea class="form-control" id="descricao" name="descricao" rows="4" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="arquivo" class="form-label">Anexar Arquivo (opcional)</label>
+                <input type="file" class="form-control" id="arquivo" name="arquivo">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Enviar Requerimento</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

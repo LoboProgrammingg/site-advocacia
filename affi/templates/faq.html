@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- FAQ -->
+<section class="faq-section custom-faq-bg py-5">
+    <div class="container">
+        <h2 class="section-title text-center text-primary font-weight-bold mb-5">Dúvidas Frequentes</h2>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="accordion" id="faqAccordion">
+                    {% for pergunta in perguntas %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{ forloop.counter }}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="collapse{{ forloop.counter }}">
+                                <strong>{{ pergunta.pergunta }}</strong>
+                            </button>
+                        </h2>
+                        <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="heading{{ forloop.counter }}" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p class="text-muted">{{ pergunta.resposta }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulário de Contato -->
+        <section class="contact-section py-5" style="background-color: #ffffff;">
+            <div class="container">
+                <h2 class="section-title text-center text-dark font-weight-bold mb-5">Entre em Contato</h2>
+                <p class="text-center mb-4 text-muted">Caso precise de uma consulta ou queira discutir um caso, entre em contato conosco. Estamos aqui para ajudar!</p>
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-8">
+                        <form action="{% url 'contato' %}" method="post">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="nome" class="form-label">Seu Nome</label>
+                                <input type="text" class="form-control" id="nome" name="nome" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Seu E-mail</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="telefone" class="form-label">Seu Telefone</label>
+                                <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="mensagem" class="form-label">Sua Mensagem</label>
+                                <textarea class="form-control" id="mensagem" name="mensagem" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-dark btn-lg shadow-lg hover-shadow">Enviar Mensagem</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</section>
+{% endblock %}

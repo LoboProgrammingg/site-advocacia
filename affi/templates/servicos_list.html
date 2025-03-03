@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Serviços Oferecidos -->
+<section class="services-section py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title text-center">Serviços Oferecidos</h2>
+        <div class="row">
+            {% for servico in servicos %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ servico.nome }}</h5>
+                        <p class="card-text">{{ servico.descricao|truncatewords:15 }}</p>
+                        <a href="{% url 'servico_detail' servico.id %}" class="btn btn-custom">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

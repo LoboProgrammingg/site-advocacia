@@ -1,0 +1,212 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<!-- Hero Section - Início -->
+<section class="hero-section text-center text-light py-5" style="background: linear-gradient(to right, #2c3e50, #34495e);">
+    <div class="container py-5">
+        <h1 class="display-3 font-weight-bold mb-3 text-shadow">Guilherme Affi</h1>
+        <p class="lead mb-4 text-shadow">Especialista em Falências, Recuperações Judiciais e Consultoria Jurídica. Confiabilidade e Expertise para resolver os seus desafios jurídicos.</p>
+    </div>
+</section>
+<!-- Hero Section - Fim -->
+
+<!-- Sobre o Advogado Section -->
+<section class="about-section py-5" style="background-color: #f4f7fa;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 text-center">
+                <img src="{% static 'images/guilherme_affi.png' %}" alt="Dr. Guilherme Affi" class="img-fluid rounded-circle shadow-lg" style="width: 300px; height: 300px; object-fit: cover;">
+            </div>
+            <div class="col-lg-6">
+                <h2 class="section-title text-primary mb-4 font-weight-bold">Sobre o Guilherme Affi</h2>
+                <p class="lead text-muted mb-4">{{ advogado.descricao }}</p>
+                <a href="{% url 'sobre' %}" class="btn btn-primary btn-lg shadow-sm hover-shadow">Leia mais sobre mim</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Falências e Recuperações Judiciais Section -->
+<section class="falencias-section py-5" style="background-color: #f4f7fa;">
+    <div class="container">
+        <h2 class="section-title text-center text-dark font-weight-bold mb-5">Falências e Recuperações Judiciais</h2>
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Empresa</th>
+                            <th>Pedido</th>
+                            <th>Tipo</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for falencia in falencias %}
+                        <tr>
+                            <td>{{ falencia.empresa }}</td>
+                            <td>{{ falencia.pedido|date:"d/m/Y" }}</td>
+                            <td>{{ falencia.tipo }}</td>
+                            <td class="text-center">
+                                {% if falencia.acesso_documento %}
+                                    <a href="{{ falencia.documento.url }}" class="btn btn-link" target="_blank">
+                                        <i class="fa fa-search"></i> <!-- Lupa -->
+                                    </a>
+                                {% else %}
+                                    <span class="text-muted">Sem acesso</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="4" class="text-center">Nenhuma falência ou recuperação judicial registrada.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section - Dúvidas Frequentes -->
+<section class="faq-section custom-faq-bg py-5">
+    <div class="container">
+        <h2 class="section-title text-center text-primary font-weight-bold mb-5">Dúvidas Frequentes</h2>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="accordion" id="faqAccordion">
+                    {% for pergunta in perguntas %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{ forloop.counter }}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="collapse{{ forloop.counter }}">
+                                <strong>{{ pergunta.pergunta }}</strong>
+                            </button>
+                        </h2>
+                        <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="heading{{ forloop.counter }}" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p class="text-muted">{{ pergunta.resposta }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Seção para Criar Requerimento -->
+<section class="requerimento-section py-5" style="background-color: #e0f7fa;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="section-title text-primary mb-4 font-weight-bold">Deseja Criar um Requerimento?</h2>
+                <p class="lead text-muted mb-4">Se você deseja formalizar um requerimento, basta clicar no botão abaixo para ser redirecionado ao nosso formulário.</p>
+                <a href="{% url 'requerimento' %}" class="btn btn-primary btn-lg shadow-sm hover-shadow">Criar Requerimento</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Serviços Section -->
+<section class="services-section py-5" style="background-color: #ffffff;">
+    <div class="container">
+        <h2 class="section-title text-center text-dark font-weight-bold mb-5">Serviços Oferecidos</h2>
+        <div class="row">
+            {% for servico in servicos %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card shadow-lg border-light rounded-lg hover-effect">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-primary">{{ servico.nome }}</h5>
+                        <p class="card-text">{{ servico.descricao|truncatewords:15 }}</p>
+                        <a href="{% url 'servico_detail' servico.id %}" class="btn btn-primary">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Últimos Artigos Section -->
+<section class="articles-section py-5" style="background-color: #f1f4f8;">
+    <div class="container">
+        <h2 class="section-title text-center text-dark font-weight-bold mb-5">Últimos Artigos</h2>
+        <div class="row">
+            {% for artigo in artigos %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card shadow-lg border-light rounded-lg hover-effect">
+                    <img src="https://via.placeholder.com/500" class="card-img-top" alt="{{ artigo.titulo }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ artigo.titulo }}</h5>
+                        <p class="card-text">{{ artigo.resumo|truncatewords:15 }}</p>
+                        <a href="{% url 'artigo_detail' artigo.id %}" class="btn btn-primary">Leia Mais</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Testemunhos Section -->
+<section class="testimonials-section py-5" style="background-color: #eef2f5;">
+    <div class="container">
+        <h2 class="section-title text-center text-dark font-weight-bold mb-5">O que nossos clientes dizem</h2>
+        <div class="row">
+            {% for testemunho in testemunhos %}
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-lg border-light rounded-lg hover-effect">
+                    <div class="card-body text-center">
+                        <blockquote class="blockquote">
+                            <p class="mb-0">“{{ testemunho.texto }}”</p>
+                        </blockquote>
+                        <footer class="blockquote-footer text-muted">{{ testemunho.cliente_nome }}</footer>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Contato Section (Agora com Formulário) -->
+<section class="contact-section py-5" style="background-color: #ffffff;">
+    <div class="container">
+        <h2 class="section-title text-center text-dark font-weight-bold mb-5">Entre em Contato</h2>
+        <p class="text-center mb-4 text-muted">Caso precise de uma consulta ou queira discutir um caso, entre em contato conosco. Estamos aqui para ajudar!</p>
+        
+        <!-- Formulário de Contato -->
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <form action="{% url 'contato' %}" method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="nome" class="form-label">Seu Nome</label>
+                        <input type="text" class="form-control" id="nome" name="nome" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Seu E-mail</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefone" class="form-label">Seu Telefone</label>
+                        <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="mensagem" class="form-label">Sua Mensagem</label>
+                        <textarea class="form-control" id="mensagem" name="mensagem" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-dark btn-lg shadow-lg hover-shadow">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
