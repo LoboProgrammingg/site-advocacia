@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.core.mail import send_mail
 from django.contrib import messages
+from django.conf import settings
 from django.core.paginator import Paginator
 
 from .forms import ContatoForm
@@ -80,6 +82,43 @@ def requerimento(request):
         )
         requerimento.save()
 
+        # Enviar e-mail para o administrador (você)
+        assunto_admin = f'Novo Requerimento de {nome_cliente}'
+        mensagem_admin = (
+            f'Nome: {nome_cliente}\n'
+            f'E-mail: {email_cliente}\n'
+            f'Serviço: {tipo_servico}\n'
+            f'Descrição: {descricao}\n'
+        )
+
+        send_mail(
+            assunto_admin,
+            mensagem_admin,
+            settings.EMAIL_HOST_USER,  # Remetente configurado no settings
+            [settings.EMAIL_HOST_USER],  # Seu e-mail para receber
+            fail_silently=False,
+        )
+
+        # Enviar e-mail de confirmação para o cliente
+        assunto_cliente = 'Recebemos seu requerimento'
+        mensagem_cliente = (
+            f'Olá {nome_cliente},\n\n'
+            'Recebemos seu requerimento e nossa equipe entrará em contato em breve.\n\n'
+            'Resumo do seu requerimento:\n'
+            f'Serviço: {tipo_servico}\n'
+            f'Descrição: {descricao}\n\n'
+            'Atenciosamente,\n'
+            'Equipe Guilherme Affi'
+        )
+
+        send_mail(
+            assunto_cliente,
+            mensagem_cliente,
+            settings.EMAIL_HOST_USER,  # Seu e-mail como remetente
+            [email_cliente],  # E-mail do cliente
+            fail_silently=False,
+        )
+
         return render(request, 'requerimento_sucesso.html')
 
     servicos = Servico.objects.filter(ativo=True)
@@ -87,16 +126,38 @@ def requerimento(request):
 
 
 def contato(request):
-    if request.method == "POST":
+    if request.method == 'POST':
         form = ContatoForm(request.POST)
         if form.is_valid():
-            form.save()
+            nome = form.cleaned_data['nome']
+            email = form.cleaned_data['email']
+            telefone = form.cleaned_data['telefone']
+            mensagem = form.cleaned_data['mensagem']
+
+            assunto = f'Nova mensagem de contato - {nome}'
+            corpo_email = (
+                f'Você recebeu uma nova mensagem através do formulário de contato.\n\n'
+                f'Nome: {nome}\n'
+                f'E-mail: {email}\n'
+                f'Telefone: {telefone}\n'
+                f'Mensagem:\n{mensagem}'
+            )
+
+            send_mail(
+                assunto,
+                corpo_email,
+                settings.EMAIL_HOST_USER,
+                [settings.CONTACT_EMAIL],
+                fail_silently=False,
+            )
+
             messages.success(request, 'Sua mensagem foi enviada com sucesso!')
-            return redirect('home')
+            return redirect('home')  # Redireciona para home
+
     else:
         form = ContatoForm()
 
-    return render(request, 'home.html', {'form': form})
+    return render(request, 'contato.html', {'form': form})
 
 
 def testemunhos(request):

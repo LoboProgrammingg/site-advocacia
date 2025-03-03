@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Advogado - Guilherme Affi</title>
+        <title>Guilherme Affi</title>
         
         <!-- Carregar a tag static -->
         {% load static %}
@@ -22,13 +22,35 @@
     
         <!-- Font Awesome (ícones) -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-    
+
+        <style>
+            .navbar-nav .nav-link {
+                font-size: 1.5rem;
+                font-weight: 500;
+            }
+
+            .alert {
+                position: fixed;
+                top: 10px;
+                right: 10px;
+                z-index: 1050;
+                animation: fadeOut 5s forwards;
+            }
+
+            @keyframes fadeOut {
+                0% { opacity: 1; }
+                90% { opacity: 1; }
+                100% { opacity: 0; display: none; }
+            }
+        </style>
     </head>
 <body>
     <!-- Navegação -->
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'home' %}">Advogado</a>
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <i class="fas fa-balance-scale fa-2x"></i>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -39,11 +61,23 @@
                     <li class="nav-item"><a class="nav-link" href="{% url 'servicos_list' %}">Serviços</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'artigos_list' %}">Artigos</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'faq' %}">FAQ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'requerimento' %}">Requerimentos</a></li> <!-- Adicionado link de Requerimentos -->
+                    <li class="nav-item"><a class="nav-link" href="{% url 'requerimento' %}">Requerimentos</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+
+    <!-- Flash Messages (Mensagens do Django) -->
+    <div class="container mt-3">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
 
     <!-- Conteúdo da Página -->
     <div class="content">
@@ -59,11 +93,22 @@
                 <a href="https://www.linkedin.com/in/guilherme-affi" target="_blank" class="text-white">LinkedIn</a> | 
                 <a href="https://www.facebook.com/guilherme.affi" target="_blank" class="text-white">Facebook</a> | 
                 <a href="mailto:contato@guilhermeaffi.com.br" class="text-white">Email</a> | 
-                <a href="{% url 'requerimento' %}" class="text-white">Requerimentos</a> <!-- Adicionado link de Requerimentos no Rodapé -->
+                <a href="{% url 'requerimento' %}" class="text-white">Requerimentos</a>
             </p>
         </div>
     </footer>
 
+    <!-- Bootstrap Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Auto-remover a mensagem após 5 segundos (opcional, caso queira JS puro) -->
+    <script>
+        setTimeout(() => {
+            let alert = document.querySelector('.alert');
+            if (alert) {
+                alert.style.display = 'none';
+            }
+        }, 5000);
+    </script>
 </body>
 </html>

@@ -18,29 +18,32 @@
 </section>
 
 <!-- Sobre o Advogado Section -->
-<section class="about-section py-5" style="background-color: #f4f7fa;">
+<section class="about-section py-5" style="background-color: #003366;">
     <div class="container">
         <div class="row align-items-center">
+            <!-- Coluna com o conteúdo à esquerda -->
+            <div class="col-lg-6">
+                <h2 class="section-title text-white mb-4 font-weight-bold">Sobre o Guilherme Affi</h2>
+                <p class="lead text-light mb-4">{{ advogado.descricao }}</p>
+                <a href="{% url 'sobre' %}" class="btn btn-custom btn-lg shadow-sm hover-shadow">Leia mais sobre mim</a>
+            </div>
+            
+            <!-- Coluna com a imagem à direita -->
             <div class="col-lg-6 text-center">
                 <img src="{% static 'images/guilherme_affi.png' %}" alt="Dr. Guilherme Affi" class="img-fluid rounded-circle shadow-lg" style="width: 300px; height: 300px; object-fit: cover;">
-            </div>
-            <div class="col-lg-6">
-                <h2 class="section-title text-primary mb-4 font-weight-bold">Sobre o Guilherme Affi</h2>
-                <p class="lead text-muted mb-4">{{ advogado.descricao }}</p>
-                <a href="{% url 'sobre' %}" class="btn btn-primary btn-lg shadow-sm hover-shadow">Leia mais sobre mim</a>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Falências e Recuperações Judiciais Section -->
-<section class="falencias-section py-5" style="background-color: #f4f7fa;">
+<section class="falencias-section py-5" style="background-color: #f4f4f4;">
     <div class="container">
-        <h2 class="section-title text-center text-dark font-weight-bold mb-5">Falências e Recuperações Judiciais</h2>
+        <h2 class="section-title text-center text-primary font-weight-bold mb-5" style="color: #003366;">Falências e Recuperações Judiciais</h2>
         <div class="row">
             <div class="col-lg-12">
                 <table class="table table-bordered table-striped">
-                    <thead class="thead-light">
+                    <thead class="thead-dark">
                         <tr>
                             <th>Empresa</th>
                             <th>Pedido</th>
@@ -77,9 +80,9 @@
 </section>
 
 <!-- FAQ Section -->
-<section class="faq-section custom-faq-bg py-5">
+<section class="faq-section custom-faq-bg py-5" style="background-color: #ffffff;">
     <div class="container">
-        <h2 class="section-title text-center text-primary font-weight-bold mb-5">Dúvidas Frequentes</h2>
+        <h2 class="section-title text-center text-primary font-weight-bold mb-5" style="color: #003366;">Dúvidas Frequentes</h2>
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="accordion" id="faqAccordion">
@@ -104,11 +107,11 @@
 </section>
 
 <!-- Criar Requerimento Section -->
-<section class="requerimento-section py-5" style="background-color: #e0f7fa;">
+<section class="requerimento-section py-5" style="background-color: #f7f7f7;">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 text-center">
-                <h2 class="section-title text-primary mb-4 font-weight-bold">Deseja Criar um Requerimento?</h2>
+                <h2 class="section-title text-primary mb-4 font-weight-bold" style="color: #003366;">Deseja Criar um Requerimento?</h2>
                 <p class="lead text-muted mb-4">Se você deseja formalizar um requerimento, basta clicar no botão abaixo para ser redirecionado ao nosso formulário.</p>
                 <a href="{% url 'requerimento' %}" class="btn btn-primary btn-lg shadow-sm hover-shadow">Criar Requerimento</a>
             </div>
@@ -119,7 +122,7 @@
 <!-- Serviços Section -->
 <section class="services-section py-5" style="background-color: #ffffff;">
     <div class="container">
-        <h2 class="section-title text-center text-dark font-weight-bold mb-5">Serviços Oferecidos</h2>
+        <h2 class="section-title text-center text-primary font-weight-bold mb-5" style="color: #003366;">Serviços Oferecidos</h2>
         <div class="row">
             {% for servico in servicos %}
             <div class="col-lg-4 col-md-6 mb-4">
@@ -137,9 +140,9 @@
 </section>
 
 <!-- Últimos Artigos Section -->
-<section class="articles-section py-5" style="background-color: #f1f4f8;">
+<section class="articles-section py-5" style="background-color: #f1efed;">
     <div class="container">
-        <h2 class="section-title text-center text-dark font-weight-bold mb-5">Últimos Artigos</h2>
+        <h2 class="section-title text-center text-primary font-weight-bold mb-5" style="color: #003366;">Últimos Artigos</h2>
         <div class="row">
             {% for artigo in artigos %}
                 <div class="col-lg-4 col-md-6 mb-4">
@@ -148,7 +151,7 @@
                             {% if artigo.imagem %}
                                 style="background-image: url('{{ artigo.imagem.url }}');"
                             {% else %}
-                                style="background-color: #f4f4f4;" 
+                                style="background-color: #f1efed;" 
                             {% endif %}
                         >
                             {% if not artigo.imagem %}
@@ -156,8 +159,14 @@
                             {% endif %}
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">{{ artigo.titulo }}</h5>
-                            <a href="{% url 'artigo_detail' artigo.id %}" class="btn btn-secondary btn-sm">Ver Artigo</a>
+                            <!-- Título com fundo branco -->
+                            <h5 class="card-title" style="background-color: white; color: #003366; padding: 10px;">
+                                {{ artigo.titulo }}
+                            </h5>
+                            <!-- Botão "Ver Artigo" com fundo #003366 e hover laranja -->
+                            <a href="{% url 'artigo_detail' artigo.id %}" class="btn" style="background-color: #003366; color: white;">
+                                Ver Artigo
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -170,53 +179,42 @@
     </div>
 </section>
 
-<!-- Testemunhos Section -->
-<section class="testimonials-section py-5" style="background-color: #eef2f5;">
-    <div class="container">
-        <h2 class="section-title text-center text-dark font-weight-bold mb-5">O que nossos clientes dizem</h2>
-        <div class="row">
-            {% for testemunho in testemunhos %}
-            <div class="col-md-4 mb-4">
-                <div class="card shadow-lg border-light rounded-lg hover-effect">
-                    <div class="card-body text-center">
-                        <blockquote class="blockquote">
-                            <p class="mb-0">“{{ testemunho.texto }}”</p>
-                        </blockquote>
-                        <footer class="blockquote-footer text-muted">{{ testemunho.cliente_nome }}</footer>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
+<!-- Adicionando o efeito hover com cor laranja -->
+<style>
+    .btn:hover {
+        background-color: #f4b41a !important;
+        color: white !important;
+    }
+</style>
+
+
 
 <!-- Contato Section -->
-<section class="contact-section py-5" style="background-color: #ffffff;">
+<section class="contact-section py-5" style="background-color: #f9f9f9;">
     <div class="container">
-        <h2 class="section-title text-center text-dark font-weight-bold mb-5">Entre em Contato</h2>
-        <p class="text-center mb-4 text-muted">Caso precise de uma consulta ou queira discutir um caso, entre em contato conosco. Estamos aqui para ajudar!</p>
+        <h2 class="section-title text-center text-primary font-weight-bold mb-4" style="color: #003366;">Entre em Contato</h2>
+        <p class="text-center mb-5 text-muted">Caso precise de uma consulta ou queira discutir um caso, entre em contato conosco. Estamos aqui para ajudar!</p>
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8">
                 <form action="{% url 'contato' %}" method="post">
                     {% csrf_token %}
-                    <div class="mb-3">
-                        <label for="nome" class="form-label">Seu Nome</label>
-                        <input type="text" class="form-control" id="nome" name="nome" required>
+                    <div class="mb-4">
+                        <label for="nome" class="form-label text-dark">Seu Nome</label>
+                        <input type="text" class="form-control form-control-lg" id="nome" name="nome" required placeholder="Digite seu nome completo">
                     </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Seu E-mail</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
+                    <div class="mb-4">
+                        <label for="email" class="form-label text-dark">Seu E-mail</label>
+                        <input type="email" class="form-control form-control-lg" id="email" name="email" required placeholder="Digite seu e-mail">
                     </div>
-                    <div class="mb-3">
-                        <label for="telefone" class="form-label">Seu Telefone</label>
-                        <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" required>
+                    <div class="mb-4">
+                        <label for="telefone" class="form-label text-dark">Seu Telefone</label>
+                        <input type="tel" class="form-control form-control-lg" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" required>
                     </div>
-                    <div class="mb-3">
-                        <label for="mensagem" class="form-label">Sua Mensagem</label>
-                        <textarea class="form-control" id="mensagem" name="mensagem" rows="4" required></textarea>
+                    <div class="mb-4">
+                        <label for="mensagem" class="form-label text-dark">Sua Mensagem</label>
+                        <textarea class="form-control form-control-lg" id="mensagem" name="mensagem" rows="5" required placeholder="Escreva sua mensagem..."></textarea>
                     </div>
-                    <button type="submit" class="btn btn-dark btn-lg shadow-lg hover-shadow">Enviar Mensagem</button>
+                    <button type="submit" class="btn btn-primary btn-lg w-100 shadow-lg hover-shadow">Enviar Mensagem</button>
                 </form>
             </div>
         </div>

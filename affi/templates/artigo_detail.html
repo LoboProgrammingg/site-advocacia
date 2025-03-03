@@ -9,7 +9,7 @@
         <!-- Título do Artigo -->
         <div class="row mb-4">
             <div class="col-12 text-center">
-                <h2 class="section-title text-primary" style="font-size: 3rem; font-weight: bold; letter-spacing: 1px; line-height: 1.4; color: #143d59;">
+                <h2 class="section-title text-primary" style="font-size: 2.5rem; font-weight: bold; letter-spacing: 1px; line-height: 1.4; color: #143d59; max-width: 80%; margin: 0 auto;">
                     {{ artigo.titulo }}
                 </h2>
             </div>
@@ -26,27 +26,14 @@
             </div>
         </div>
 
-        <!-- Imagem do Artigo -->
-        <div class="row mb-4">
-            <div class="col-12 text-center">
-                <div class="article-image mb-4">
-                    {% if artigo.imagem %}
-                        <img src="{{ artigo.imagem.url }}" alt="{{ artigo.titulo }}" class="img-fluid rounded shadow-lg" style="max-width: 100%; height: auto; border-radius: 20px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);">
-                    {% else %}
-                        <img src="{% static 'images/no-image.jpg' %}" alt="Imagem não disponível" class="img-fluid rounded shadow-lg" style="max-width: 100%; height: auto; border-radius: 20px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);">
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-
         <!-- Botão Voltar -->
         <div class="row mt-5">
             <div class="col-12 text-center">
-                <a href="{% url 'artigos_list' %}" class="btn btn-custom btn-lg" style="background-color: #f4b41a; color: white; font-weight: bold; padding: 15px 35px; border-radius: 40px; text-transform: uppercase; letter-spacing: 1px; font-size: 1.1rem; transition: all 0.3s ease;">
+                <a href="{% url 'artigos_list' %}" class="btn btn-primary btn-lg shadow-sm hover-shadow">
                     Voltar para os artigos
                 </a>
             </div>
         </div>
-    </div>
+
 </section>
 {% endblock %}

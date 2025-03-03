@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Requerimento Enviado</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container text-center mt-5">
+        <h1>Requerimento Enviado com Sucesso!</h1>
+        <p>Recebemos seu requerimento e entraremos em contato em breve.</p>
+        <a href="{% url 'home' %}" class="btn btn-primary">Voltar para o início</a>
+    </div>
+</body>
+</html>

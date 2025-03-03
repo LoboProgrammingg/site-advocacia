@@ -7,27 +7,36 @@ body {
 }
 
 /* ----------------------------- Navbar (Cabeçalho) ----------------------------- */
+/* Barra de navegação */
+/* Carregar a fonte Montserrat do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+
+/* Barra de navegação */
 .navbar {
-    background-color: #003366;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #003366; /* Cor de fundo escura para a navbar */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave para a navbar */
+    font-family: 'Montserrat', sans-serif; /* Aplicar a fonte Montserrat */
 }
 
+/* Estilos do link e logo */
 .navbar .navbar-brand,
 .navbar .nav-link {
-    color: #fff !important; /* Mantendo o branco para contraste */
-    transition: color 0.3s ease;
+    color: #fff !important; /* Mantendo o branco para o texto do link e logo */
+    transition: color 0.3s ease; /* Transição suave ao passar o mouse */
+    font-family: 'Montserrat', sans-serif; /* Garantir que os links também usem Montserrat */
 }
 
+/* Estilo ao passar o mouse sobre os links */
 .navbar .nav-link:hover {
-    color: #ffd700 !important;
+    color: #ffd700 !important; /* Cor dourada ao passar o mouse */
 }
 
+/* Estilo do ícone do toggler (para dispositivos móveis) */
 .navbar-toggler-icon {
-    background-color: #fff;
+    background-color: #fff; /* Ícone do toggler em branco */
 }
 
 /* ----------------------------- Rodapé ----------------------------- */
-
 .footer {
     background-color: #003366;
     color: #fff; /* Texto branco no rodapé */
@@ -80,21 +89,40 @@ body {
     flex-direction: column;
 }
 
-.card-img-container, .card-body img {
+.card-img-container {
     height: 180px;
+    width: 100%;
+    object-fit: cover;
+    background-color: #f1efed; /* Fundo da imagem */
+}
+
+.card-img-container img {
+    height: 100%;
     width: 100%;
     object-fit: cover;
 }
 
 .card-title, .card-text {
     font-size: 1.1rem;
-    color: #143d59;
+    color: #003366;
     font-weight: bold;
     margin-bottom: 10px;
+    background-color: white; /* Fundo branco no título */
 }
 
 .card-text {
     color: #6c757d;
+}
+
+.card-body .btn {
+    background-color: #003366;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.card-body .btn:hover {
+    background-color: #f4b41a; /* Hover laranja */
 }
 
 .btn-primary, .btn-read-more {
@@ -113,6 +141,20 @@ body {
     background-color: #ffd700;
     color: #003366;
 }
+
+/* Personalizando o botão */
+.btn-custom {
+    background-color: white; /* Fundo branco */
+    color: black; /* Texto branco */
+    border: 2px solid #007bff; /* Cor de borda azul */
+}
+
+.btn-custom:hover {
+    background-color: #f4b41a; /* Amarelo no hover */
+    color: white; /* Manter o texto branco */
+    border-color: #f4b41a; /* Borda amarela */
+}
+
 
 /* ----------------------------- Depoimentos ----------------------------- */
 .testimonial-blockquote {
@@ -296,6 +338,7 @@ body {
     margin-top: 20px;
     text-align: center;
 }
+
 /* Tornando a imagem do artigo responsiva */
 .card-img-container {
     width: 100%;
@@ -310,10 +353,66 @@ body {
     width: 100%;
     height: 100%;
 }
+
 /* Efeito de hover para botões */
 .hover-orange:hover {
     background-color: #f4b41a; /* Laranja */
     border-color: #f4b41a;     /* Laranja */
 }
 
+/* ----------------------------- Estilos para o Formulário de Contato ----------------------------- */
+.contact-section {
+    background-color: #f9f9f9;
+}
+
+.contact-section .form-control {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    transition: border-color 0.3s ease;
+}
+
+.contact-section .form-control:focus {
+    border-color: #003366;
+    box-shadow: 0 0 5px rgba(0, 51, 102, 0.3);
+}
+
+.contact-section button {
+    background-color: #003366;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 12px 30px;
+    transition: background-color 0.3s ease;
+}
+
+.contact-section button:hover {
+    background-color: #f4b41a;
+    color: #003366;
+}
+
+/* ----------------------------- Media Queries para Formulário de Contato ----------------------------- */
+@media (max-width: 768px) {
+    .contact-section .form-control {
+        font-size: 0.9rem;
+    }
+}
+/* Mensagem de sucesso personalizada */
+.alert-success {
+    background-color: #28a745; /* Verde claro */
+    color: white;
+    font-weight: bold;
+    border: 2px solid #218838;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.alert-success p {
+    margin: 0;
+    padding: 10px;
+}
+
+.alert-success:hover {
+    opacity: 0.9;
+}
 

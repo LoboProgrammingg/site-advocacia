@@ -2,43 +2,57 @@
 
 {% block content %}
 <!-- Formulário de Requerimento -->
-<section class="requerimento-section py-5" style="background-color: #f0f4f8;">
+<section class="requerimento-section py-5" style="background-color: #f8f9fc;">
     <div class="container">
-        <h2 class="section-title" style="color: #003366;">Preencha o Formulário de Requerimento</h2>
-        <form method="POST" enctype="multipart/form-data">  <!-- adicionado enctype -->
-            {% csrf_token %}
-            <div class="mb-3">
-                <label for="nome_cliente" class="form-label">Nome do Cliente</label>
-                <input type="text" class="form-control" id="nome_cliente" name="nome_cliente" required>
-            </div>
+        <h2 class="section-title text-center text-dark font-weight-bold mb-5" style="color: #003366;">Preencha o Formulário de Requerimento</h2>
 
-            <div class="mb-3">
-                <label for="email_cliente" class="form-label">Email do Cliente</label>
-                <input type="email" class="form-control" id="email_cliente" name="email_cliente" required>
-            </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <form method="POST" enctype="multipart/form-data" class="shadow-lg rounded-4 p-4 bg-white">
+                    {% csrf_token %}
 
-            <div class="mb-3">
-                <label for="tipo_servico" class="form-label">Tipo de Serviço</label>
-                <select class="form-select" id="tipo_servico" name="tipo_servico" required>
-                    <option value="" disabled selected>Selecione um serviço</option>
-                    {% for servico in servicos %}
-                        <option value="{{ servico.id }}">{{ servico.nome }}</option>
-                    {% endfor %}
-                </select>
-            </div>
+                    <!-- Nome do Cliente -->
+                    <div class="mb-4">
+                        <label for="nome_cliente" class="form-label text-muted">Nome Completo</label>
+                        <input type="text" class="form-control form-control-lg border-0 shadow-sm" id="nome_cliente" name="nome_cliente" placeholder="Digite seu nome completo" required>
+                    </div>
 
-            <div class="mb-3">
-                <label for="descricao" class="form-label">Descrição do Requerimento</label>
-                <textarea class="form-control" id="descricao" name="descricao" rows="4" required></textarea>
-            </div>
+                    <!-- E-mail do Cliente -->
+                    <div class="mb-4">
+                        <label for="email_cliente" class="form-label text-muted">E-mail</label>
+                        <input type="email" class="form-control form-control-lg border-0 shadow-sm" id="email_cliente" name="email_cliente" placeholder="Digite seu e-mail" required>
+                    </div>
 
-            <div class="mb-3">
-                <label for="arquivo" class="form-label">Anexar Arquivo (opcional)</label>
-                <input type="file" class="form-control" id="arquivo" name="arquivo">
-            </div>
+                    <!-- Tipo de Serviço -->
+                    <div class="mb-4">
+                        <label for="tipo_servico" class="form-label text-muted">Tipo de Serviço</label>
+                        <select class="form-select form-select-lg border-0 shadow-sm" id="tipo_servico" name="tipo_servico" required>
+                            <option value="" disabled selected>Selecione um serviço</option>
+                            {% for servico in servicos %}
+                                <option value="{{ servico.id }}">{{ servico.nome }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
 
-            <button type="submit" class="btn btn-primary">Enviar Requerimento</button>
-        </form>
+                    <!-- Descrição do Requerimento -->
+                    <div class="mb-4">
+                        <label for="descricao" class="form-label text-muted">Descrição</label>
+                        <textarea class="form-control form-control-lg border-0 shadow-sm" id="descricao" name="descricao" rows="5" placeholder="Descreva seu requerimento detalhadamente" required></textarea>
+                    </div>
+
+                    <!-- Anexar Arquivo -->
+                    <div class="mb-4">
+                        <label for="arquivo" class="form-label text-muted">Anexar Arquivo (opcional)</label>
+                        <input type="file" class="form-control form-control-lg border-0 shadow-sm" id="arquivo" name="arquivo">
+                    </div>
+
+                    <!-- Botão de Envio -->
+                    <div class="text-center mt-5">
+                        <button type="submit" class="btn btn-lg btn-primary shadow-lg hover-shadow border-0 rounded-3 px-5 py-3">Enviar Requerimento</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </section>
 {% endblock %}

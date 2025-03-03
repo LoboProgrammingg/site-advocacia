@@ -3,42 +3,41 @@
 {% load static %}
 
 {% block content %}
-<!-- Seção "Sobre o Advogado" -->
+<!-- Seção de Texto e Imagem do Advogado -->
 <section class="about-section py-5" style="background-color: #f8f9fa; color: #333;">
     <div class="container">
-        <div class="row align-items-center">
-            <!-- Texto sobre o advogado -->
-            <div class="col-md-6 order-md-1 text-center text-md-left">
-                <h2 class="section-title text-primary mb-4">Sobre o Dr. Guilherme Affi</h2>
-            </div>
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <!-- Card com imagem e texto -->
+                <div class="card shadow-lg" style="border: none; border-radius: 15px;">
+                    <div class="row no-gutters">
+                        <!-- Texto sobre o advogado -->
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <!-- Título centralizado, cor específica e tamanho aumentado -->
+                                <h3 class="font-weight-bold mb-4 text-center" style="color: #003366; font-size: 2.5rem;">
+                                    Guilherme Affi
+                                </h3>
+                                <!-- Parágrafos com tamanho ajustado e maior espaçamento -->
+                                <p class="text-dark" style="font-size: 1.15rem; line-height: 1.8;">
+                                    Guilherme Affi é um profissional apaixonado por compartilhar conhecimento e proporcionar experiências enriquecedoras. Com uma abordagem focada em inovação e educação, ele busca transformar o conteúdo em soluções práticas e acessíveis para seu público. Especializado na criação de artigos profundos e relevantes, Guilherme se dedica a ajudar seus leitores a se manterem atualizados com as últimas tendências e melhores práticas de sua área.
+                                    Sua expertise e comprometimento com a qualidade se refletem em sua produção, que é sempre pensada para agregar valor e facilitar o entendimento dos temas abordados. Além de ser um escritor talentoso, ele é um entusiasta de ferramentas digitais e estratégias de engajamento, buscando sempre oferecer o melhor conteúdo possível.
+                                    Seja para os profissionais da área ou para aqueles que estão começando a explorar novos horizontes, os artigos de Guilherme Affi oferecem uma leitura interessante e objetiva, sempre com foco em proporcionar aprendizado e transformação.
+                                </p>
+                                <p class="text-secondary" style="font-size: 1.15rem; line-height: 1.8;">
+                                    "Texto Motivador do Homi"
+                                </p>
+                            </div>
+                        </div>
 
-            <!-- Imagem do advogado -->
-            <div class="col-md-6 order-md-0 text-center">
-                <img src="{% static 'images/guilherme_affi.png' %}" alt="Dr. Guilherme Affi" class="img-fluid rounded-circle shadow-lg" style="max-width: 280px; height: auto;">
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Seção de Texto Adicional Profissional -->
-<section class="additional-text-section py-5" style="background-color: #ffffff;">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="alert alert-primary custom-alert">
-                    <h3 class="font-weight-bold mb-4">Guilherme Affi - Sua Tradição em Consultoria Jurídica</h3>
-                    <p class="lead mb-4">
-                        Guilherme Affi é um profissional apaixonado por compartilhar conhecimento e proporcionar experiências enriquecedoras. Com uma abordagem focada em inovação e educação, ele busca transformar o conteúdo em soluções práticas e acessíveis para seu público. Especializado na criação de artigos profundos e relevantes, Guilherme se dedica a ajudar seus leitores a se manterem atualizados com as últimas tendências e melhores práticas de sua área.
-                        Sua expertise e comprometimento com a qualidade se refletem em sua produção, que é sempre pensada para agregar valor e facilitar o entendimento dos temas abordados. Além de ser um escritor talentoso, ele é um entusiasta de ferramentas digitais e estratégias de engajamento, buscando sempre oferecer o melhor conteúdo possível.
-                        Seja para os profissionais da área ou para aqueles que estão começando a explorar novos horizontes, os artigos de Guilherme Affi oferecem uma leitura interessante e objetiva, sempre com foco em proporcionar aprendizado e transformação.
-                    </p>
-                    <p class="text-muted mb-4">
-                        Ao longo da sua carreira, Dr. Guilherme Affi consolidou sua reputação como um dos principais advogados em sua área de atuação. Ele oferece um atendimento individualizado e soluções jurídicas personalizadas, visando sempre o melhor interesse de seus clientes.
-                    </p>
+                        <!-- Imagem do advogado -->
+                        <div class="col-md-4 d-flex justify-content-center align-items-center">
+                            <img src="{% static 'images/guilherme_affi.png' %}" alt="Dr. Guilherme Affi" class="img-fluid rounded-circle shadow-lg" style="max-width: 280px; height: auto;">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
 {% endblock %}
