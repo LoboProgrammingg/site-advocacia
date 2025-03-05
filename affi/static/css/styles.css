@@ -210,17 +210,42 @@ body {
 .pagination .page-link {
     color: #143d59;
     font-weight: bold;
-    border: none;
+    border: 2px solid #f4b41a;
     background-color: transparent;
     transition: all 0.3s ease;
-    margin: 0 3px;
+    margin: 0 6px;
+    padding: 10px 15px;
+    border-radius: 25px;
 }
 
 .pagination .page-link:hover {
     background-color: #f4b41a;
-    color: #143d59;
+    color: #ffffff;
+    transform: scale(1.1);
 }
 
+.pagination .page-item.disabled .page-link {
+    color: #777;
+    background-color: #e9ecef;
+}
+
+.pagination .page-link:focus {
+    outline: none;
+    box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.1);
+}
+
+.pagination .page-item {
+    transition: transform 0.3s ease;
+}
+
+.pagination .page-item:hover {
+    transform: translateY(-5px);
+}
+
+.pagination .page-item a {
+    text-decoration: none;
+    color: inherit;
+}
 /* ----------------------------- Responsividade ----------------------------- */
 @media (max-width: 768px) {
     .section-title {
@@ -415,4 +440,39 @@ body {
 .alert-success:hover {
     opacity: 0.9;
 }
+/* Efeito de Parallax */
+.parallax {
+    position: relative;
+    overflow: hidden;
+    height: 100vh; /* Ajuste conforme necessário */
+    background-color: #f4f4f4;
+}
+
+.parallax > .parallax-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    color: #fff;
+    font-size: 2rem;
+}
+
+/* Efeito de movimento suave ao rolar */
+.parallax.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    transition: transform 0.5s ease-out;
+}
+
+.parallax.sticky .parallax-content {
+    transform: translate(-50%, -60%); /* Ajuste para dar a sensação de movimento */
+}
+.hero-section {
+    transition: transform 0.2s ease-in-out;
+  }
 

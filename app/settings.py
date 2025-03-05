@@ -20,13 +20,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    
     'affi',
 ]
 
@@ -95,9 +97,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -129,4 +131,69 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'matheusloboprogrammer@gmail.com'
 EMAIL_HOST_PASSWORD = 'czqy zagj duqt fqld'
 
-CONTACT_EMAIL = 'matheusloboprogrammer@gmail.com' 
+CONTACT_EMAIL = 'matheusloboprogrammer@gmail.com'
+
+JAZZMIN_SETTINGS = {
+    # Definindo título e cabeçalho do painel
+    "site_title": "Guilherme Affi",
+    "site_header": "Administração",
+    "site_brand": "Guilherme Affi",
+    "welcome_sign": "Bem-vindo ao painel de administração!",
+    
+    # Definindo o tema e a aparência
+    "theme": "darkly",  # Usando o tema escuro para uma aparência moderna
+    "color": "#143d59",  # Cor personalizada para o cabeçalho
+    "header_toggle": True,  # Exibe o menu lateral quando o cabeçalho é clicado
+    "navigation_expanded": True,  # Exibe o menu lateral expandido
+    "show_ui_builder": False,  # Oculta a opção de UI Builder (caso não deseje editar diretamente a interface)
+
+    # Configuração de ícones
+    "icons": {
+        "affi.advogado": "fas fa-user-tie",  # Advogados
+        "affi.agendamento": "fas fa-calendar-check",  # Agendamentos
+        "affi.artigo": "fas fa-newspaper",  # Artigos
+        "affi.contato": "fas fa-address-book",  # Contatos
+        "affi.falenciarecuperacao": "fas fa-archive",  # Falência e Recuperação
+        "affi.perguntafaq": "fas fa-question-circle",  # Perguntas FAQ
+        "affi.requerimento": "fas fa-file-alt",  # Requerimentos
+        "affi.servico": "fas fa-cogs",  # Serviços
+        "affi.testemunho": "fas fa-comments",  # Testemunhos
+        "auth.user": "fas fa-users",  # Users
+        "auth.group": "fas fa-users-cog",  # Groups
+    },
+
+    # Seções de modelos e grupos no painel
+    "groups": [
+        {"name": "Gestão de Usuários", "models": ["auth.user", "auth.group"]},
+        {"name": "Gestão de Advogados", "models": ["affi.advogado"]},
+        {"name": "Gestão de Agendamentos", "models": ["affi.agendamento"]},
+        {"name": "Gestão de Artigos", "models": ["affi.artigo"]},
+        {"name": "Gestão de Contatos", "models": ["affi.contato"]},
+        {"name": "Gestão de Falência e Recuperação", "models": ["affi.falenciarecuperacao"]},
+        {"name": "Gestão de Perguntas FAQ", "models": ["affi.perguntafaq"]},
+        {"name": "Gestão de Requerimentos", "models": ["affi.requerimento"]},
+        {"name": "Gestão de Serviços", "models": ["affi.servico"]},
+        {"name": "Gestão de Testemunhos", "models": ["affi.testemunho"]},
+    ],
+
+    # Configuração de links personalizados na barra superior
+    "topmenu_links": [
+        {"name": "Dashboard", "url": "/admin/", "icon": "fas fa-tachometer-alt"},
+        {"name": "Documentação", "url": "https://django-jazzmin.readthedocs.io/", "icon": "fas fa-book"},
+        {"name": "Site", "url": "/", "icon": "fas fa-external-link-alt"},  # Link direto para o site público
+    ],
+
+    # Definir links rápidos no menu lateral
+    "user_menu": [
+        {"name": "Perfil", "url": "/admin/auth/user/", "icon": "fas fa-user"},
+        {"name": "Sair", "url": "/admin/logout/", "icon": "fas fa-sign-out-alt"},
+    ],
+
+    # Customização da interface (cores, fontes, etc.)
+    "dark_mode": True,  # Habilita o modo escuro
+    "layout": "fluid",  # Layout fluido, para aproveitar melhor o espaço na tela
+
+    # Customização das tabelas
+    "table_style": "striped",  # Estilo de tabela listrado para melhorar a legibilidade
+    "table_autosize": True,  # Tabelas com auto-ajuste de largura
+}
